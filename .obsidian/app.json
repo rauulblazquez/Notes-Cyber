@@ -1,4 +1,5 @@
 {
   "attachmentFolderPath": "Capturas",
-  "promptDelete": false
+  "promptDelete": false,
+  "alwaysUpdateLinks": true
 }

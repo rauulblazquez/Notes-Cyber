@@ -10,11 +10,33 @@ Por ello, cada tema incluye:
 
 * 🛠️ Herramientas utilizadas y su funcionamiento.
 * 📖 Explicaciones detalladas de conceptos.
-* 💻 Ejemplos prácticos.
+* 💻 Ejemplos prácticos y comandos.
 * ⚙️ Comandos explicados paso a paso.
 * 🌐 Ataques y técnicas habituales.
-* 🔍 Metodologías de pentesting.
-* 📝 Apuntes organizados para facilitar el estudio.
+* 🧭 Casos reales aplicados en las máquinas resueltas.
+
+## 🗺️ Estructura
+
+Los apuntes están organizados siguiendo el **flujo de un pentest**. Empieza por el [índice metodológico](index.md).
+
+```
+Hacking/
+├── _index.md          # Mapa de contenidos por metodología
+├── Reconocimiento/    # Nmap, enumeración local/web, curl, whatweb
+├── Web/               # Fuzzing, SQLi, BurpSuite, CMS, subdominios
+├── Fuerza Bruta/      # Hydra, CrackMapExec
+├── Escalada/          # Escalada básica, GTFObins, NFS
+└── Utilidades/        # SQLMap, reverse shells, conceptos
+```
+
+Estructura de máquinas resueltas:
+
+```
+Maquinas/
+├── HackTheBox/
+│   └── Easy/          # Writeups HTB
+└── Dockerlabs/        # Writeups Dockerlabs
+```
 
 ## 📂 Contenido
 
@@ -38,7 +60,6 @@ El repositorio irá creciendo con documentación sobre temas como:
 * Desarrollo de scripts (Python, Bash...)
 * Writeups de máquinas y laboratorios
 * Herramientas de pentesting
-
 
 ## 📈 Progreso
 

@@ -1,22 +1,88 @@
-Miramos que puerto tiene abiertos
+# Injection — Dockerlabs
+
+> Dificultad: fácil · Vía de ataque: SQLi → credenciales → escalada con binario vulnerable.
+
+## Resumen
+
+| Etapa            | Hallazgo                                        |
+| ---------------- | ----------------------------------------------- |
+| Escaneo          | Puertos 22 (SSH), 80 (web)                      |
+| Enumeración web  | Login vulnerable a **SQL Injection**            |
+| Explotación      | Bypass de login → obtenemos credenciales de SSH |
+| Escalada         | Binario con `sudo` explotable                   |
+
+## 1. Escaneo de puertos
+
+Primero miramos qué puertos tiene abiertos:
+
 ![[Pasted image 20260518162439.png]]
-Miramos mas detalladamente las versiones de cada puerto
+
+## 2. Escaneo detallado de versiones
+
+Sobre los puertos detectados, sacamos las versiones:
+
 ![[Pasted image 20260518162537.png]]
-Miramos que tenemos en la web
+
+## 3. Ver la web
+
+Comprobamos qué hay en el puerto 80:
+
 ![[Pasted image 20260518162707.png]]
-Apreciamos un loggin, probaremos a ver si tenemos subdirecciones ocultas
+
+Vemos un **login**.
+
+## 4. Buscar directorios ocultos
+
+Probamos con gobuster a ver si hay rutas ocultas:
+
 ![[Pasted image 20260518162854.png]]
-Vemos que no apreciamos mucho, asique probamos a mirar Vhost
+
+No vemos gran cosa.
+
+## 5. Probar vhosts
+
+Como no sacamos rutas, probamos virtual hosts (con FFuF/wfuzz):
+
 ![[Pasted image 20260518163120.png]]
-Seguimos sin ver nada asique, siendo un login podriamos probar a acceder mediante sql injection
-![[Pasted image 20260518163355.png]]
+
+## 6. SQL Injection
+
+Al ser un login, probamos una **inyección SQL** para saltarnos la autenticación:
+
+```
 User: admin
 Password: ' or '1'='1
-Le daremos en login y 
+```
+
+- `admin` → el usuario al que queremos acceder.
+- `' or '1'='1` → hace que la condición `WHERE user='admin' AND password='...'` sea siempre verdadera.
+
+![[Pasted image 20260518163355.png]]
+
+## 7. Credenciales obtenidas
+
+Logramos entrar como el usuario **dylan**, y la web nos muestra su **password**. Las probaremos en SSH:
+
 ![[Pasted image 20260518163438.png]]
-Vemso que pudimos acceder como el usuario dylan y nos da su password, que las probaremos en ssh
-![[Pasted image 20260518163551.png]]Vemos que estamos con el usuario dylan asique buscamos cosas para poder escalar privilegios
+
+## 8. Acceso por SSH
+
+Nos conectamos con las credenciales obtenidas:
+
+```bash
+ssh dylan@IP
+```
+
+![[Pasted image 20260518163551.png]]
+
+## 9. Escalada de privilegios
+
+Con la shell del usuario `dylan`, buscamos cómo escalar:
+
 ![[Pasted image 20260518163751.png]]
-El que vemos mas interesante seria el de env, asique lo explotaremos
+
+Vemos un binario relacionado con `env` con permisos sudo — lo explotamos:
+
 ![[Pasted image 20260518163853.png]]
-y ya seriamos root
+
+¡Y ya somos **root**!
