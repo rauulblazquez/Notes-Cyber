@@ -23,16 +23,17 @@ Cuando Nmap termina, verás algo como "**22/tcp open ssh**". Respira hondo. Esto
 | -p-                    | Mira todos los puertos TCP                                      |
 | <br>-sU --top-ports 20 | Prueba los UDP mas comunes                                      |
 
+
 ## Timing y Performance
 
-|Plantilla|Opción|Descripción|Velocidad|
-|---|---|---|---|
-|**Paranoid**|-T0|Muy lento, evasión máxima|🐌 5min+|
-|**Sneaky**|-T1|Lento, buena evasión|🐢 15s|
-|**Polite**|-T2|Normal, bajo ancho de banda|🚶 5s|
-|**Normal**|-T3|Default, equilibrado|🏃 1s|
-|**Aggressive**|-T4|Rápido, red confiable|🚗 300ms|
-|**Insane**|-T5|Muy rápido, puede perder paquetes|✈️ 100ms|
+| Plantilla      | Opción | Descripción                       | Velocidad |
+| -------------- | ------ | --------------------------------- | --------- |
+| **Paranoid**   | -T0    | Muy lento, evasión máxima         | 🐌 5min+  |
+| **Sneaky**     | -T1    | Lento, buena evasión              | 🐢 15s    |
+| **Polite**     | -T2    | Normal, bajo ancho de banda       | 🚶 5s     |
+| **Normal**     | -T3    | Default, equilibrado              | 🏃 1s     |
+| **Aggressive** | -T4    | Rápido, red confiable             | 🚗 300ms  |
+| **Insane**     | -T5    | Muy rápido, puede perder paquetes | ✈️ 100ms  |
 ## Interpretación de Resultados
 
 |Estado|Descripción|Significado|
