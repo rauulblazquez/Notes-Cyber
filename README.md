@@ -1,70 +1,36 @@
-# 📚 Hacking Notes
+# 📚 Notes Cyber
 
-Este repositorio reúne mis apuntes personales sobre **ciberseguridad y hacking ético**, creados con el objetivo de aprender, reforzar conocimientos y disponer de una guía de consulta rápida.
+Apuntes y notas que voy haciendo sobre **ciberseguridad y hacking ético** mientras sigo aprendiendo y practicando.
 
-## 🎯 Objetivo
+La idea del repositorio es tener todo organizado en un mismo sitio y poder volver a consultar los temas, comandos y técnicas cuando los necesite.
 
-No quiero limitarme a memorizar comandos o utilizar herramientas sin comprender qué hacen. Mi objetivo es entender el funcionamiento de cada técnica, herramienta y vulnerabilidad desde la base.
+## 🎯 ¿Qué puedes encontrar?
 
-Por ello, cada tema incluye:
+Principalmente:
 
-* 🛠️ Herramientas utilizadas y su funcionamiento.
-* 📖 Explicaciones detalladas de conceptos.
-* 💻 Ejemplos prácticos y comandos.
-* ⚙️ Comandos explicados paso a paso.
-* 🌐 Ataques y técnicas habituales.
-* 🧭 Casos reales aplicados en las máquinas resueltas.
+- 🐧 Linux
+- 🌐 Redes
+- 🔎 Reconocimiento y enumeración
+- 🕸️ Web Hacking
+- 🪟 Windows
+- 🏢 Active Directory
+- ⬆️ Privilege Escalation
+- 🔐 Criptografía
+- 🕵️ OSINT
+- 📡 Wi-Fi
+- 💥 Buffer Overflow
+- 🔬 Forense
+- 🔄 Ingeniería inversa
+- 🐍 Python y Bash
+- 🛠️ Herramientas de pentesting
+- 🖥️ Writeups de máquinas y laboratorios
 
-## 🗺️ Estructura
+En cada apartado voy añadiendo explicaciones, comandos, ejemplos y cosas que voy aprendiendo durante la práctica.
 
-Los apuntes están organizados siguiendo el **flujo de un pentest**. Empieza por el [índice metodológico](index.md).
+## 🗂️ Estructura
 
-```
-Hacking/
-├── _index.md          # Mapa de contenidos por metodología
-├── Reconocimiento/    # Nmap, enumeración local/web, curl, whatweb
-├── Web/               # Fuzzing, SQLi, BurpSuite, CMS, subdominios
-├── Fuerza Bruta/      # Hydra, CrackMapExec
-├── Escalada/          # Escalada básica, GTFObins, NFS
-└── Utilidades/        # SQLMap, reverse shells, conceptos
-```
-
-Estructura de máquinas resueltas:
-
-```
+```text
 Maquinas/
 ├── HackTheBox/
-│   └── Easy/          # Writeups HTB
-└── Dockerlabs/        # Writeups Dockerlabs
-```
-
-## 📂 Contenido
-
-El repositorio irá creciendo con documentación sobre temas como:
-
-* Linux
-* Redes
-* Enumeración
-* Escaneo
-* Reconocimiento
-* Web Hacking
-* Active Directory
-* Windows
-* Privilege Escalation
-* Criptografía
-* Ingeniería Inversa
-* OSINT
-* Wi-Fi
-* Buffer Overflow
-* Forense
-* Desarrollo de scripts (Python, Bash...)
-* Writeups de máquinas y laboratorios
-* Herramientas de pentesting
-
-## 📈 Progreso
-
-Este repositorio se actualizará continuamente conforme avance en mi formación, certificaciones, laboratorios y experiencias en plataformas como Hack The Box, TryHackMe y otros entornos de práctica.
-
----
-
-Si este repositorio te resulta útil, puedes dejar una ⭐ para apoyar el proyecto.
+│   └── Easy/
+└── Dockerlabs/
